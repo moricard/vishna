@@ -1,7 +1,7 @@
 /**
  * Modified from vlandham.github.com/vis/gates/js/CustomTooltip.js
  */
-function CustomTooltip( tooltipId, width){
+function CustomTooltip( tooltipId, width ) {
 
     var tooltipId = tooltipId;
     $("body").append("<div class='tooltip' id='" + tooltipId + "'></div>");
