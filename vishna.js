@@ -20,8 +20,7 @@ var posts,        //content
     tooltip = CustomTooltip( "gates_tooltip", 240 );
 
 
-// Get data and start visualization.
-d3.json("http://hndroidapi.appspot.com/newest/format/json/page/?appid=vishna", function(error, data){
+   $.getJSON("http://hndroidapi.appspot.com/news/format/json/page/?appid=vishna&callback=?", function(data) {
 
     posts = data.items;
     next = posts.pop();
@@ -54,7 +53,6 @@ d3.json("http://hndroidapi.appspot.com/newest/format/json/page/?appid=vishna", f
         .domain([ d3.min(posts, function(d) { return d.time; }),
                   d3.max(posts, function(d) { return d.time; }) ])
         .range([ 1, 0.2 ]);
-
 
     launch();
     legend();
