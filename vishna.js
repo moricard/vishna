@@ -21,8 +21,7 @@ var posts,        //content
 
 
 // Get data and start visualization.
-// "http://hndroidapi.appspot.com/newest/format/json/page/?appid=vishna"
-d3.json("data.json", function(error, data){
+d3.json("http://hndroidapi.appspot.com/newest/format/json/page/?appid=vishna", function(error, data){
 
     posts = data.items;
     next = posts.pop();
