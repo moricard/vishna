@@ -1,0 +1,77 @@
+
+body {
+    font-family: 'Helvetica', sans-serif;
+}
+
+h1 {
+    font-size: 52px;
+    text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.7);
+    line-height: 130px;
+    margin: 26px 0 0 0;
+}
+
+ .popover {
+      z-index: 9000;
+ }
+
+.tooltip {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    border: 2px solid #000;
+    /* background: #222222; */
+    background: #fff;
+    opacity: .9;
+    /* color: #eeeeee; */
+    color: black;
+    padding: 10px;
+    width: 300px;
+    font-size: 12px;
+    z-index: 10;
+}
+
+.tooltip .title {
+        font-size: 18px;
+}
+
+.tooltip .name {
+  font-weight:bold;
+}
+
+.tooltip a {
+      text-decoration: none;
+      color: #ff7f0c;
+}
+
+.tooltip a:visited {
+      color: #08c;
+}
+
+.tooltip a:hover {
+      text-decoration: underline;
+}
+
+article {
+      margin: auto auto auto auto;
+      text-align: center;
+}
+
+svg {
+      border: 1px solid #e0e0e0;
+      margin: 20px auto 20px auto;
+}
+
+a > circle {
+      fill: #ff7f0c;
+}
+
+a:visited > circle {
+      fill: #08c;
+      stroke: #00c;
+}
+
+a:hover > circle {
+      stroke: #000;
+}
