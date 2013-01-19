@@ -1,60 +1,67 @@
 var vishna = (function() {
 
-var urls = {
-            news  : "http://hndroidapi.appspot.com/news/format/json/page/?appid=vishna&callback=?",
-            ask   : "http://hndroidapi.appspot.com/ask/format/json/page/?appid=vishna&callback=?",
-            newest: "http://hndroidapi.appspot.com/newest/format/json/page/?appid=vishna&callback=?",
-            best  : "http://hndroidapi.appspot.com/best/format/json/page/?appid=vishna&callback=?"
+    var urls = {
+        news  : "http://hndroidapi.appspot.com/news/format/json/page/?appid=vishna&callback=?",
+        ask   : "http://hndroidapi.appspot.com/ask/format/json/page/?appid=vishna&callback=?",
+        newest: "http://hndroidapi.appspot.com/newest/format/json/page/?appid=vishna&callback=?",
+        best  : "http://hndroidapi.appspot.com/best/format/json/page/?appid=vishna&callback=?"
+    },
+        posts,        //content
+        next,         //next page
+        o,            //opacity scale
+        r,            //radius scale
+        z,            //color scale
+        g,            //gravity scale
+        w = 960,      //width
+        h = 600,      //height
+        m = 20,       //margin
+        center = {    //gravity center
+            x : ( w - m ) / 2,
+            y : ( h - m ) / 2
         },
-    posts,        //content
-    next,         //next page
-    o,            //opacity scale
-    r,            //radius scale
-    z,            //color scale
-    g,            //gravity scale
-    w = 960,      //width
-    h = 600,      //height
-    m = 20,       //margin
-    t = {         //time factors
-        minutes : 1,
-        hour    : 60,
-        hours   : 60,
-        day     : 1440,
-        days    : 1440
-    },
-    svg = d3.select("body article")
-        .append("svg")
-        .attr("height", h + "px")
-        .attr("width", w + "px"),
-    tooltip = CustomTooltip( "posts_tooltip", 240 ),
-    gravity = -0.03,
-    damper = 0.1,
-    center = {
-        x : ( w - m ) / 2,
-        y : ( h - m ) / 2
-    },
-    friction = 0.9,
-    force = d3.layout.force().size([ w - m, h - m ]),
-    circles;
+        t = {         //time factors
+            minutes : 1,
+            hour    : 60,
+            hours   : 60,
+            day     : 1440,
+            days    : 1440
+        },
+        gravity = -0.04, //gravity constants
+        damper = 0.1,
+        friction = 0.9,
+        force = d3       //gravity engine
+            .layout
+            .force()
+            .size([ w - m,
+                    h - m ]),
+        svg = d3         //container
+            .select("body article")
+            .append("svg")
+            .attr("height", h + "px")
+            .attr("width", w + "px"),
+        circles,         //data representation
+        tooltip = CustomTooltip( "posts_tooltip", 240 );
 
-    function init( url ) {
-
-        load( url, function() {
-            launch();
-            legend();
-        });
-
+    function init( category ) {
+        if ( urls[ category ] ) {
+            load( urls[ category ], function() {
+                launch();
+                legend();
+            });
+        }
     }
 
-    function update( url ) {
-        load( url, function() {
-        circles
-            .transition()
-            .delay(function(d, i) { return i * 10; })
-            .duration( 1000 )
-            .attr("r", function(d) { return 0; }).remove();
-            launch();
-        });
+    function update( category ) {
+        if ( urls[ category ] ) {
+            circles
+                .transition()
+                .duration( 1000 )
+                .attr("r", function(d) { return 0; })
+                .style("opacity", function(d) { return 0; })
+                .remove();
+
+            load( urls[ category ], launch );
+        }
     }
 
     function load( url, callback ){
@@ -141,16 +148,6 @@ var urls = {
             .attr("r", function(d) { return r( d.score ); });
 
         loadGravity( moveCenter );
-
-        //Register onChange function
-        d3.selectAll("[name='source']").on("change", function change() {
-            var filter;
-            switch(this.value){
-            case("frontpage"): ; break;
-            }
-
-            loadGravity( filter );
-        });
 
         //Loads gravity
         function loadGravity( generator ) {
@@ -239,16 +236,18 @@ var urls = {
         d3.select(element).attr("stroke", function(d) { return d3.rgb( z( d.comments )).darker(); });
     }
 
+    //Register onChange function
+    d3.selectAll("[name='category']").on("change", function change() {
+        init( this.value );
+    });
 
     return {
-
         urls : urls,
         init : init,
         update : update
-
     };
 
 
 })();
 
-vishna.init(vishna.urls.news);
+vishna.init("news");
