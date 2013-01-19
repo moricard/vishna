@@ -1,7 +1,7 @@
 /**
  * Modified from vlandham.github.com/vis/gates/js/CustomTooltip.js
  */
-function CustomTooltip( tooltipId, width){
+function CustomTooltip( tooltipId, width ) {
 
     var tooltipId = tooltipId;
     $("body").append("<div class='tooltip' id='" + tooltipId + "'></div>");
@@ -12,9 +12,11 @@ function CustomTooltip( tooltipId, width){
         tooltip.css("width", width);
     }
 
+    tooltip.on("mouseleave", function(e) { hideTooltip(); });
+
     hideTooltip();
 
-    function showTooltip(content, event){
+    function showTooltip( content, event ) {
         tooltip
             .html(content)
             .show();
@@ -26,9 +28,9 @@ function CustomTooltip( tooltipId, width){
         tooltip.hide();
     }
 
-    function updatePosition(event){
-        var xOffset = 5,
-            yOffset = 5,
+    function updatePosition( event ) {
+        var xOffset = 0,
+            yOffset = 0,
             ttw = tooltip.width(),
             tth = tooltip.height(),
             wscrY = $(window).scrollTop(),
