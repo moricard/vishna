@@ -243,9 +243,7 @@ var vishna = (function() {
     }
 
     //Register onChange function
-    d3.selectAll("[name='category']").on("change", function change() {
-        update( this.value );
-    });
+    $("a.category").on("click", function(e) { update( $(this).attr("value") ); });
 
     return {
         urls : urls,
@@ -256,4 +254,4 @@ var vishna = (function() {
 
 })();
 
-vishna.init($('input[name=category]:checked').val());
+vishna.init("news");
