@@ -25,7 +25,7 @@ var urls = {
         .append("svg")
         .attr("height", h + "px")
         .attr("width", w + "px"),
-    tooltip = CustomTooltip( "gates_tooltip", 240 ),
+    tooltip = CustomTooltip( "posts_tooltip", 240 ),
     gravity = -0.03,
     damper = 0.1,
     center = {
@@ -223,8 +223,11 @@ var urls = {
 
     function showDetails( data, i, element ) {
         d3.select( element ).attr( "stroke", "black" );
-        var content = '<span class=\"name\">' + data.title + '</span><br/>';
-        content += '<a href=\"http://news.ycombinator.com/item?id='+ data.item_id +'\">' + data.description + '</a>';
+
+        var description = data.description.split("|"),
+            content = '<span class=\"name\">' + data.title + '</span><br/>' +
+                       description[0] + "<br/>" +
+                      '<a href=\"http://news.ycombinator.com/item?id='+ data.item_id +'\">' + description[1] + '</a>';
 
         tooltip.showTooltip(content, d3.event);
     }
@@ -232,7 +235,6 @@ var urls = {
 
     function hideDetails(data, i, element) {
         d3.select(element).attr("stroke", function(d) { return d3.rgb( z( d.comments )).darker(); });
-        //tooltip.hideTooltip();
     }
 
 
