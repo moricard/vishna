@@ -11,6 +11,7 @@ var urls = {
     o,            //opacity scale
     r,            //radius scale
     z,            //color scale
+    g,            //gravity scale
     w = 960,      //width
     h = 600,      //height
     m = 20,       //margin
@@ -33,8 +34,7 @@ var urls = {
         y : ( h - m ) / 2
     },
     friction = 0.9,
-    force = d3.layout.force()
-        .size([ w - m, h - m ]),
+    force = d3.layout.force().size([ w - m, h - m ]),
     circles;
 
     function init( url ) {
@@ -92,6 +92,8 @@ var urls = {
                 .domain([ d3.min(posts, function(d) { return d.time; }),
                           d3.max(posts, function(d) { return d.time; }) ])
                 .range([ 1, 0.2 ]);
+
+            g = function(d) { return -r(d) * 8 - 50; };
 
             callback();
 
@@ -154,7 +156,7 @@ var urls = {
         function loadGravity( generator ) {
             force
                 .gravity(gravity)
-                .charge( function(d) { return -d.score * 2; })
+                .charge( function(d) { return g( d.score ); })
                 .friction(friction)
                 .on("tick", function(e) {
                     generator(e.alpha);
