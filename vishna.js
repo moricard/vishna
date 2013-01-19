@@ -44,10 +44,12 @@ var vishna = (function() {
 
     function init( category ) {
         if ( urls[ category ] ) {
-            load( urls[ category ], function() {
-                launch();
-                legend();
-            });
+            load( urls[ category ],
+                  function() {
+                      launch();
+                      legend();
+                  },
+                  category === "ask");
         }
     }
 
@@ -60,11 +62,11 @@ var vishna = (function() {
                 .style("opacity", function(d) { return 0; })
                 .remove();
 
-            load( urls[ category ], launch );
+            load( urls[ category ], launch, category === "ask" );
         }
     }
 
-    function load( url, callback ){
+    function load( url, callback, ask ){
 
         $.getJSON(url, function(data) {
 
@@ -79,6 +81,10 @@ var vishna = (function() {
                 d.comments = comments ? comments : 0;
                 d.score = score ? score : 0;
                 d.time = time[ 0 ] * t[ time[ 1 ] ];
+
+                if ( ask ) {
+                    d.url = "http://news.ycombinator.com/" + d.url;
+                }
 
                 return d;
 
@@ -238,7 +244,7 @@ var vishna = (function() {
 
     //Register onChange function
     d3.selectAll("[name='category']").on("change", function change() {
-        init( this.value );
+        update( this.value );
     });
 
     return {
@@ -250,4 +256,4 @@ var vishna = (function() {
 
 })();
 
-vishna.init("news");
+vishna.init($('input[name=category]:checked').val());
