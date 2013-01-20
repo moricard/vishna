@@ -228,7 +228,7 @@ var vishna = (function() {
         d3.select( element ).attr( "stroke", "black" );
 
         var description = data.description.split("|"),
-            content = '<span class=\"name\">' + data.title + '</span><br/>' +
+            content = '<span class=\"title\"><a href=\"' + data.url + '\">' + data.title + '</a></span><br/>' +
                        description[0] + "<br/>" +
                       '<a href=\"http://news.ycombinator.com/item?id='+ data.item_id +'\">' + description[1] + '</a>';
 
