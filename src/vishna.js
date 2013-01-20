@@ -54,15 +54,17 @@ var vishna = (function() {
 
     function update( category ) {
         if ( urls[ category ] ) {
-            circles
-                .transition()
-                .duration( 750 )
-                .attr("r", function(d) { return r(d) + 100; })
-                .delay( 250 )
-                .style("opacity", function(d) { return 0; })
-                .remove();
+            load( urls[ category ], function() {
+                circles
+                    .transition()
+                    .duration( 750 )
+                    .attr("r", function(d) { return r(d) + 100; })
+                    .delay( 250 )
+                    .style("opacity", function(d) { return 0; })
+                    .remove();
 
-            load( urls[ category ], launch );
+                launch();
+            });
         }
     }
 
