@@ -25,6 +25,10 @@ Some of the code present in this visualisation was inspired from a [blog post by
 Jim Vallandingham](http://vallandingham.me/bubble_charts_in_d3.html). Big thanks
 to Jim for a very clear and informative tutorial.
 
+## Data source
+The data used by this program comes from and unofficial Hacker News JSON API
+hosted on http://hndroidapi.appspot.com. The API source code is available [here](https://github.com/glebpopov/Hacker-News-Droid-API).
+
 ## License
 
 Copyright (C) 2013 Marc-Olivier Ricard
