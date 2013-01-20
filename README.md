@@ -1,6 +1,9 @@
-# HackerNews visual representation with d3.js
+# HackerNews visual representation using d3.js
 
 ## Elements
+It should be noted that the radius and opacity of the bubbles are re-calculated
+on a linear scale for each page reload. So the palest on the *newest* might be
+25 minutes old vs. 7 days on the *best* page. The same logic applies for radii.
 
 ### Radius
 The radius of a circle is directly proportionnal to its score
@@ -16,6 +19,11 @@ Opacity should represent the post's age. The older a post is, the paler it becom
 ## Contributing
 If you use this program and want to make it better, feel free to fork and make a
 pull request, I will be glad to integrate enhancements.
+
+## Credits
+Some of the code present in this visualisation was inspired from a [blog post by
+Jim Vallandingham](http://vallandingham.me/bubble_charts_in_d3.html). Big thanks
+to Jim for a very clear and informative tutorial.
 
 ## License
 
