@@ -56,7 +56,9 @@ var vishna = (function() {
         if ( urls[ category ] ) {
             circles
                 .transition()
-                .duration( 1000 )
+                .duration( 750 )
+                .attr("r", function(d) { return r(d) + 100; })
+                .delay( 250 )
                 .style("opacity", function(d) { return 0; })
                 .remove();
 
@@ -90,7 +92,8 @@ var vishna = (function() {
             r = d3.scale.linear()
                 .domain([ d3.min(posts, function(d) { return d.score; }),
                           d3.max(posts, function(d) { return d.score; }) ])
-                .range([ 10, 130 ]);
+                .range([ 10, 130 ])
+                .clamp(true);
 
             z = d3.scale.linear()
                 .domain([ d3.min(posts, function(d) { return d.comments; }),
