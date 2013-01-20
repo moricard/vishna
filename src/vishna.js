@@ -26,7 +26,7 @@ var vishna = (function() {
             day     : 1440,
             days    : 1440
         },
-        gravity = -0.04, //gravity constants
+        gravity = -0.01, //gravity constants
         damper = 0.1,
         friction = 0.9,
         force = d3       //gravity engine
@@ -105,7 +105,7 @@ var vishna = (function() {
                           d3.max(posts, function(d) { return d.time; }) ])
                 .range([ 1, 0.2 ]);
 
-            g = function(d) { return -r(d) * 8 - 50; };
+            g = function(d) { return -r(d) * r(d) / 6; };
 
             callback();
 
