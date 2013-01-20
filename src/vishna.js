@@ -6,19 +6,19 @@ var vishna = (function() {
         newest: "http://hndroidapi.appspot.com/newest/format/json/page/?appid=vishna&callback=?",
         best  : "http://hndroidapi.appspot.com/best/format/json/page/?appid=vishna&callback=?"
     },
+        w = $(window).width() * 0.85, //width
+        h = $(window).height() * 0.85,//height
+        m = 20,                       //margin
+        center = {                    //gravity center
+            x : ( w - m ) / 2,
+            y : ( h - m ) / 2
+        },
         posts,        //content
         next,         //next page
         o,            //opacity scale
         r,            //radius scale
         z,            //color scale
         g,            //gravity scale
-        w = 960,      //width
-        h = 600,      //height
-        m = 20,       //margin
-        center = {    //gravity center
-            x : ( w - m ) / 2,
-            y : ( h - m ) / 2
-        },
         t = {         //time factors
             minutes : 1,
             hour    : 60,
@@ -67,8 +67,7 @@ var vishna = (function() {
     }
 
     function load( url, callback, ask ){
-
-        $.getJSON(url, function(data) {
+        $.getJSON(url, function( data ) {
 
             posts = data.items;
             next = posts.pop();
@@ -80,7 +79,7 @@ var vishna = (function() {
 
                 d.comments = comments ? comments : 0;
                 d.score = score ? score : 0;
-                d.time = time[ 0 ] * t[ time[ 1 ] ];
+                d.time = time[0] * t[ time[1] ]; // number * factor
 
                 if ( ask ) {
                     d.url = "http://news.ycombinator.com/" + d.url;
@@ -116,7 +115,7 @@ var vishna = (function() {
     function launch() {
 
         force
-            .nodes(posts);
+            .nodes( posts );
 
         circles = svg
             .append("g")
@@ -237,12 +236,11 @@ var vishna = (function() {
         tooltip.showTooltip(content, d3.event);
     }
 
-
-    function hideDetails(data, i, element) {
+    function hideDetails( data, i, element ) {
         d3.select(element).attr("stroke", function(d) { return d3.rgb( z( d.comments )).darker(); });
     }
 
-    //Register onChange function
+    //Register category selectors
     $("a.category").on("click", function(e) { update( $(this).attr("value") ); });
 
     return {
@@ -250,8 +248,6 @@ var vishna = (function() {
         init : init,
         update : update
     };
-
-
 })();
 
 vishna.init("news");

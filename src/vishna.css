@@ -7,14 +7,14 @@ body {
 h1 {
     text-align: left;
     font-size: 12pt;
-    margin: 26px 0 0 8px;
+    margin: 8px 0 0 8px;
     color: #fefefe;
 }
 
 .top {
     text-align: left;
-    width: 960px;
-    margin: auto;
+    width: 85%;
+    margin: 8px auto 0px auto;
     background-color: rgb(0, 136, 204);
     line-height: 18pt;
 }
@@ -79,8 +79,9 @@ article {
 }
 
 svg {
-      border: 1px solid #e0e0e0;
       margin: 0 auto 20px auto;
+      min-width: 960px;
+      min-height: 600px;
 }
 
 footer {
