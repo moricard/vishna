@@ -6,8 +6,8 @@ var vishna = (function() {
         newest: "http://hndroidapi.appspot.com/newest/format/json/page/?appid=vishna&callback=?",
         best  : "http://hndroidapi.appspot.com/best/format/json/page/?appid=vishna&callback=?"
     },
-        w = $(window).width() * 0.85, //width
-        h = $(window).height() * 0.85,//height
+        w = Math.max( $(window).width() * 0.85, 960 ),  //width
+        h = Math.max( $(window).height() * 0.85, 600 ), //height
         m = 20,                       //margin
         center = {                    //gravity center
             x : ( w - m ) / 2,
