@@ -1,15 +1,37 @@
 
 body {
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Verdana', sans-serif;
+    font-size: 10pt;
 }
 
 h1 {
-    font-size: 52px;
-    text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.7);
-    line-height: 130px;
-    margin: 26px 0 0 0;
+    text-align: left;
+    font-size: 12pt;
+    margin: 26px 0 0 8px;
+    color: #fefefe;
 }
 
+.top {
+    text-align: left;
+    width: 960px;
+    margin: auto;
+    background-color: rgb(0, 136, 204);
+    line-height: 18pt;
+}
+
+.top a {
+    color: #fefefe;
+}
+
+.top a:visited {
+    color: #fefefe;
+}
+
+h1 > small {
+    margin: 0 0 0 26px;
+    font-size: 10pt;
+    font-weight: 400;
+}
  .popover {
       z-index: 9000;
  }
@@ -21,35 +43,33 @@ h1 {
     -moz-border-radius:5px;
     border-radius: 5px;
     border: 2px solid #000;
-    /* background: #222222; */
-    background: #fff;
+    background-color: #fefefe;
     opacity: .9;
-    /* color: #eeeeee; */
     color: black;
     padding: 10px;
     width: 300px;
-    font-size: 12px;
+    font-size: 7pt;
     z-index: 10;
 }
 
 .tooltip .title {
-        font-size: 18px;
+        font-size: 10pt;
 }
 
 .tooltip .name {
   font-weight:bold;
 }
 
-.tooltip a {
+a {
       text-decoration: none;
       color: #ff7f0c;
 }
 
-.tooltip a:visited {
+a:visited {
       color: #08c;
 }
 
-.tooltip a:hover {
+a:hover {
       text-decoration: underline;
 }
 
@@ -60,7 +80,11 @@ article {
 
 svg {
       border: 1px solid #e0e0e0;
-      margin: 20px auto 20px auto;
+      margin: 0 auto 20px auto;
+}
+
+footer {
+    text-align: center;
 }
 
 a > circle {
