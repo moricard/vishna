@@ -246,4 +246,4 @@ var vishna = (function() {
     };
 })();
 
-vishna.init("news");
+vishna.init( window.location.href.split("#")[1] ? window.location.href.split("#")[1] : "news");
